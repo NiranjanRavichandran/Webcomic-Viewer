@@ -103,7 +103,7 @@
 		42633EBE1BB0C3A6004E5E35 /* Webcomic */ = {
 			isa = PBXGroup;
 			children = (
-				42DAB4921BB20E5000F0C746 /* Modal */,
+				42DAB4921BB20E5000F0C746 /* Model */,
 				42DAB4901BB20E1900F0C746 /* Controllers */,
 				42DAB48F1BB20E0F00F0C746 /* Views */,
 				42DAB48E1BB20DF600F0C746 /* Supporting Files */,
@@ -158,12 +158,12 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
-		42DAB4921BB20E5000F0C746 /* Modal */ = {
+		42DAB4921BB20E5000F0C746 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				42DAB4951BB2268500F0C746 /* ComicStrip.swift */,
 			);
-			name = Modal;
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

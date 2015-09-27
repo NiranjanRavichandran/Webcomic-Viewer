@@ -32,6 +32,17 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LCC-7S-KtU">
+                                        <rect key="frame" x="316" y="18" width="31" height="33"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="gtR-ge-U7z"/>
+                                            <constraint firstAttribute="width" constant="31" id="xVx-Ks-byr"/>
+                                        </constraints>
+                                        <state key="normal" image="open_in_browser"/>
+                                        <connections>
+                                            <action selector="openInBrowser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qzb-ut-XSw"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -40,6 +51,8 @@
                                     <constraint firstAttribute="trailing" secondItem="ZSI-UR-fZk" secondAttribute="trailing" id="ILK-7w-Xxj"/>
                                     <constraint firstItem="ZSI-UR-fZk" firstAttribute="top" secondItem="pTf-a1-f8o" secondAttribute="top" id="IxJ-NB-Cdr"/>
                                     <constraint firstItem="7Ds-l5-KL0" firstAttribute="top" secondItem="pTf-a1-f8o" secondAttribute="top" constant="22" id="hbn-Po-K7l"/>
+                                    <constraint firstItem="LCC-7S-KtU" firstAttribute="top" secondItem="pTf-a1-f8o" secondAttribute="top" constant="18" id="iOH-45-ctI"/>
+                                    <constraint firstAttribute="trailing" secondItem="LCC-7S-KtU" secondAttribute="trailing" constant="13" id="s2C-0X-cJp"/>
                                     <constraint firstItem="7Ds-l5-KL0" firstAttribute="top" secondItem="ZSI-UR-fZk" secondAttribute="bottom" constant="-43" id="y1J-G9-F1W"/>
                                 </constraints>
                             </view>
@@ -132,5 +145,6 @@
         <image name="Next" width="56" height="56"/>
         <image name="Prev" width="56" height="56"/>
         <image name="Title Bar" width="348" height="58"/>
+        <image name="open_in_browser" width="104" height="104"/>
     </resources>
 </document>

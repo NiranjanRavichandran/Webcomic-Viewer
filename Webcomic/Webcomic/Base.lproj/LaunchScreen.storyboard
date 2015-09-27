@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -13,15 +14,50 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stick" translatesAutoresizingMaskIntoConstraints="NO" id="ygI-Mj-u03">
+                                <rect key="frame" x="67" y="428" width="240" height="239"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="239" id="7vR-3q-L6N"/>
+                                    <constraint firstAttribute="width" constant="240" id="Ane-uD-pld"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Webcomic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9M1-4x-hFl">
+                                <rect key="frame" x="93" y="269" width="188" height="60"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Light" family="Chalkboard SE" pointSize="42"/>
+                                <color key="textColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.41960784309999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="9M1-4x-hFl" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="249" id="2IB-hl-Un5"/>
+                            <constraint firstItem="9M1-4x-hFl" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="77" id="5C5-jF-L2z"/>
+                            <constraint firstItem="ygI-Mj-u03" firstAttribute="top" secondItem="9M1-4x-hFl" secondAttribute="bottom" constant="99" id="Gyp-zm-0fE"/>
+                            <constraint firstItem="ygI-Mj-u03" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="kxm-xO-q7Y"/>
+                            <constraint firstItem="9M1-4x-hFl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ny6-DG-gqy"/>
+                            <constraint firstItem="9M1-4x-hFl" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="tzn-BI-eRP"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="ygI-Mj-u03" secondAttribute="bottom" id="z0p-x1-5r6"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="2IB-hl-Un5"/>
+                                <exclude reference="5C5-jF-L2z"/>
+                                <exclude reference="tzn-BI-eRP"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.5" y="374.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="stick" width="455" height="500"/>
+    </resources>
 </document>

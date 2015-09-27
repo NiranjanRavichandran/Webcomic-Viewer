@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet var nextStrip: UIButton!
     @IBOutlet var prevStrip: UIButton!
     @IBOutlet var randomStrip: UIButton!
+    var comicStrip: ComicStrip?
     var urlIndex: Int = 100
     let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -33,7 +34,7 @@ class ViewController: UIViewController {
         
         if Reachability.isConnectedToNetwork(){
             
-            let url = NSURL(string: "http://xkcd.com/info.0.json")
+            let url = NSURL(string: "http://xkcd.com/100/info.0.json")
             restAPICall(url!)
             showActivityIndicator()
         }
@@ -56,8 +57,8 @@ class ViewController: UIViewController {
                 
             }else{
                 let jsonResponse = try! NSJSONSerialization.JSONObjectWithData(responseData!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                let comicStrip = ComicStrip(jsonResponse: jsonResponse)
-                NSURLSession.sharedSession().dataTaskWithURL(comicStrip.imgURL!, completionHandler: { (imageData, imageResponse, imageError) -> Void in
+                self.comicStrip = ComicStrip(jsonResponse: jsonResponse)
+                NSURLSession.sharedSession().dataTaskWithURL(self.comicStrip!.imgURL!, completionHandler: { (imageData, imageResponse, imageError) -> Void in
                     if imageData != nil{
                         
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -66,8 +67,8 @@ class ViewController: UIViewController {
                                 self.actInd.stopAnimating()
                                 self.comicImageView.image = UIImage(data: imageData!)
                                 self.comicImageView.alpha = 1
-                                self.comicTitle.text = comicStrip.title
-                                print(comicStrip.transcript!)
+                                self.comicTitle.text = self.comicStrip!.title
+                                print(self.comicStrip!.transcript!)
                             })
                             
                         })
@@ -147,6 +148,7 @@ class ViewController: UIViewController {
             errorMessage.center = blurredView.center
             errorImage.center = blurredView.center
             errorImage.center.y = blurredView.center.y - 80
+            errorImage.alpha = 0
             
             tryAgain.setTitle("Try Again", forState: UIControlState.Normal)
             tryAgain.center = blurredView.center
@@ -157,8 +159,10 @@ class ViewController: UIViewController {
             blurredView.addSubview(errorMessage)
             
             }) { (Bool) -> Void in
-                
-                blurredView.addSubview(errorImage)
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    blurredView.addSubview(errorImage)
+                    errorImage.alpha = 1
+                })
         }
         
     }
@@ -174,4 +178,13 @@ class ViewController: UIViewController {
         actInd.startAnimating()
     }
     
+    @IBAction func openInBrowser(sender: AnyObject) {
+        let actionSheetController: UIAlertController = UIAlertController(title: "Alert", message: "Open comic in browser?", preferredStyle: .Alert)
+        actionSheetController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        //Create and an open action
+        actionSheetController.addAction(UIAlertAction(title: "Open", style: .Default) { action -> Void in
+            UIApplication.sharedApplication().openURL(NSURL(string: "http://xkcd.com/\(self.urlIndex)")!)
+            })
+        self.presentViewController(actionSheetController, animated: true, completion: nil)
+    }
 }

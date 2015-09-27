@@ -11,7 +11,6 @@ import Foundation
 struct ComicStrip {
     let title: String?
     let imgURL: NSURL?
-    let link: NSURL?
     let transcript: String?
     let year: String?
     
@@ -19,7 +18,6 @@ struct ComicStrip {
         
         title = jsonResponse["title"] as? String
         imgURL = NSURL(string: jsonResponse["img"] as! String)
-        link = NSURL(string: jsonResponse["link"] as! String)
         transcript = jsonResponse["transcript"] as? String
         year = jsonResponse["year"] as? String
         
