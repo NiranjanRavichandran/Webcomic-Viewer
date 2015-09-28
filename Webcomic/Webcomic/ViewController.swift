@@ -3,7 +3,7 @@
 //  Webcomic
 //
 //  Created by Niranjan Ravichandran on 22/09/15.
-//  Copyright © 2015 Adavers. All rights reserved.
+//  Copyright © 2015 Niranjan. All rights reserved.
 //
 
 import UIKit
@@ -23,8 +23,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+        // Initial seeting up of the view
         backgroundView.layer.cornerRadius = 10
+        //Creating left and write swipe gestures
         let leftSwipe = UISwipeGestureRecognizer(target: self, action: Selector("nextAction:"))
         let rightSwipe = UISwipeGestureRecognizer(target: self, action: Selector("prevAction:"))
         leftSwipe.direction = .Left
@@ -32,6 +33,7 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(rightSwipe)
         view.addGestureRecognizer(leftSwipe)
         
+        //Checking for internet connection
         if Reachability.isConnectedToNetwork(){
             
             let url = NSURL(string: "http://xkcd.com/100/info.0.json")
@@ -42,13 +44,16 @@ class ViewController: UIViewController {
         
     }
     
+    //REST call function that fetches from xkcd API
     func restAPICall(url: NSURL){
         
+        //Asynchronous call to fetch data
         NSURLSession.sharedSession().dataTaskWithURL(url) { (responseData, response, error) -> Void in
             
             if error != nil{
                 if error?.code == -1009{
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        //Calling to load error page
                         self.displayErrorPage()
                     })
                 }else{
@@ -56,19 +61,19 @@ class ViewController: UIViewController {
                 }
                 
             }else{
+                //Serialising JSON response
                 let jsonResponse = try! NSJSONSerialization.JSONObjectWithData(responseData!, options: NSJSONReadingOptions.MutableContainers) as! NSDictionary
                 self.comicStrip = ComicStrip(jsonResponse: jsonResponse)
                 NSURLSession.sharedSession().dataTaskWithURL(self.comicStrip!.imgURL!, completionHandler: { (imageData, imageResponse, imageError) -> Void in
                     if imageData != nil{
                         
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            
+                            //Updating UI on main thread.
                             UIView.animateWithDuration(0.4, animations: { () -> Void in
                                 self.actInd.stopAnimating()
                                 self.comicImageView.image = UIImage(data: imageData!)
                                 self.comicImageView.alpha = 1
                                 self.comicTitle.text = self.comicStrip!.title
-                                print(self.comicStrip!.transcript!)
                             })
                             
                         })
@@ -80,6 +85,7 @@ class ViewController: UIViewController {
         
     }
     
+    //Function for navigating to next comic
     @IBAction func nextAction(sender: AnyObject) {
         
         fadeAnimation()
@@ -99,6 +105,7 @@ class ViewController: UIViewController {
         nextAction(self)
     }
     
+    //Function for navigating to previous comic
     @IBAction func prevAction(sender: AnyObject) {
         fadeAnimation()
         self.urlIndex--
@@ -106,6 +113,7 @@ class ViewController: UIViewController {
         
     }
     
+    //function for loading a random comic
     @IBAction func loadRandomAction(sender: AnyObject) {
         
         restAPICall(NSURL(string: "http://xkcd.com/\(Int(arc4random_uniform(1000)))/info.0.json")!)
@@ -118,6 +126,7 @@ class ViewController: UIViewController {
         
     }
     
+    //Comic changing aimation and activity indicator
     func fadeAnimation(){
         
         UIView.animateWithDuration(0.4) { () -> Void in
@@ -126,8 +135,10 @@ class ViewController: UIViewController {
         }
     }
     
+    //Function for creating an error page for bad connection
     func displayErrorPage(){
         
+        //Creating a blurred view for displaying error
         let blurredeffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
         let blurredView = UIVisualEffectView(effect: blurredeffect)
         let errorMessage: UILabel = UILabel(frame: CGRectMake(0, 0, 320, 50))
@@ -167,6 +178,7 @@ class ViewController: UIViewController {
         
     }
     
+    //Activity indicator during comic navigation
     func showActivityIndicator(){
         
         actInd.frame = CGRectMake(0.0, 0.0, 40.0, 40.0);
@@ -178,11 +190,14 @@ class ViewController: UIViewController {
         actInd.startAnimating()
     }
     
+    //Open in bwoser function.
     @IBAction func openInBrowser(sender: AnyObject) {
-        let actionSheetController: UIAlertController = UIAlertController(title: "Alert", message: "Open comic in browser?", preferredStyle: .Alert)
+        //AlertView before opening browser.
+        let actionSheetController: UIAlertController = UIAlertController(title: "Open in browser?", message: nil, preferredStyle: .Alert)
         actionSheetController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         //Create and an open action
         actionSheetController.addAction(UIAlertAction(title: "Open", style: .Default) { action -> Void in
+            //Opening URL in browser.
             UIApplication.sharedApplication().openURL(NSURL(string: "http://xkcd.com/\(self.urlIndex)")!)
             })
         self.presentViewController(actionSheetController, animated: true, completion: nil)

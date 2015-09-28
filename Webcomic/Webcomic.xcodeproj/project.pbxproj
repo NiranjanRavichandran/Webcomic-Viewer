@@ -13,7 +13,6 @@
 		42633EC71BB0C3A6004E5E35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42633EC61BB0C3A6004E5E35 /* Assets.xcassets */; };
 		42633ECA1BB0C3A6004E5E35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42633EC81BB0C3A6004E5E35 /* LaunchScreen.storyboard */; };
 		42633ED51BB0C3A6004E5E35 /* WebcomicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42633ED41BB0C3A6004E5E35 /* WebcomicTests.swift */; };
-		42633EE01BB0C3A6004E5E35 /* WebcomicUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42633EDF1BB0C3A6004E5E35 /* WebcomicUITests.swift */; };
 		42DAB48D1BB1FD2400F0C746 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 42DAB48C1BB1FD2400F0C746 /* Default-568h@2x.png */; settings = {ASSET_TAGS = (); }; };
 		42DAB4961BB2268500F0C746 /* ComicStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DAB4951BB2268500F0C746 /* ComicStrip.swift */; settings = {ASSET_TAGS = (); }; };
 		42DAB4D81BB38D1900F0C746 /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42DAB4D71BB38D1900F0C746 /* ConnectionManager.swift */; settings = {ASSET_TAGS = (); }; };
@@ -48,8 +47,6 @@
 		42633ED41BB0C3A6004E5E35 /* WebcomicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcomicTests.swift; sourceTree = "<group>"; };
 		42633ED61BB0C3A6004E5E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42633EDB1BB0C3A6004E5E35 /* WebcomicUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebcomicUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		42633EDF1BB0C3A6004E5E35 /* WebcomicUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcomicUITests.swift; sourceTree = "<group>"; };
-		42633EE11BB0C3A6004E5E35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42DAB48C1BB1FD2400F0C746 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		42DAB4951BB2268500F0C746 /* ComicStrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComicStrip.swift; sourceTree = "<group>"; };
 		42DAB4D71BB38D1900F0C746 /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
@@ -85,7 +82,6 @@
 			children = (
 				42633EBE1BB0C3A6004E5E35 /* Webcomic */,
 				42633ED31BB0C3A6004E5E35 /* WebcomicTests */,
-				42633EDE1BB0C3A6004E5E35 /* WebcomicUITests */,
 				42633EBD1BB0C3A6004E5E35 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,15 +114,6 @@
 				42633ED61BB0C3A6004E5E35 /* Info.plist */,
 			);
 			path = WebcomicTests;
-			sourceTree = "<group>";
-		};
-		42633EDE1BB0C3A6004E5E35 /* WebcomicUITests */ = {
-			isa = PBXGroup;
-			children = (
-				42633EDF1BB0C3A6004E5E35 /* WebcomicUITests.swift */,
-				42633EE11BB0C3A6004E5E35 /* Info.plist */,
-			);
-			path = WebcomicUITests;
 			sourceTree = "<group>";
 		};
 		42DAB48E1BB20DF600F0C746 /* Supporting Files */ = {
@@ -317,7 +304,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				42633EE01BB0C3A6004E5E35 /* WebcomicUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +430,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Webcomic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.niranjan.Webcomic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -458,6 +445,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Webcomic/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.niranjan.Webcomic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
